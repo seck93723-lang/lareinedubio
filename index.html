@@ -689,8 +689,8 @@ function bStock(){
 /* catalogue du patron */
 let cv={n:"",p:"",b:"",d:"",img:""};
 function readImg(file){return new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{
-  const m=520,sc=Math.min(1,m/Math.max(im.width,im.height)),cvs=document.createElement("canvas");cvs.width=Math.round(im.width*sc);cvs.height=Math.round(im.height*sc);
-  cvs.getContext("2d").drawImage(im,0,0,cvs.width,cvs.height);res(cvs.toDataURL("image/jpeg",.72))};im.src=r.result};r.readAsDataURL(file)})}
+  const m=400,sc=Math.min(1,m/Math.max(im.width,im.height)),cvs=document.createElement("canvas");cvs.width=Math.round(im.width*sc);cvs.height=Math.round(im.height*sc);
+  cvs.getContext("2d").drawImage(im,0,0,cvs.width,cvs.height);res(cvs.toDataURL("image/jpeg",.62))};im.src=r.result};r.readAsDataURL(file)})}
 function vCatalog(){const c=CFG(),on=c.web==="on",cats=CATS();
   const missing=[...new Map(Object.values(C.prod).filter(p=>!findCat(p.n)).map(p=>[p.n.trim().toLowerCase(),p])).values()];
   return `<div class="panel"><h3>🛒 ${t("webT2")}</h3>
@@ -1126,6 +1126,7 @@ reportPDF=FR(reportPDF);generalPDF=FR(generalPDF);receiptPDF=FR(receiptPDF);envP
 const setLang=l=>{if(view==="new")readDraft();LANG=l;try{localStorage.setItem(K_LANG,l)}catch(e){}render()};
 document.getElementById("lfr").onclick=()=>setLang("fr");
 document.getElementById("lit").onclick=()=>setLang("wo");
+if('serviceWorker' in navigator&&!window.REINE_DEMO&&location.protocol!=='file:'){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
 loadLocal();render();
 if(SES){setSync("wait");sync()}
 
