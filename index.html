@@ -182,6 +182,13 @@ nav.tabs button span{font-size:.7rem;white-space:nowrap}
 input[type=date]{-webkit-appearance:none;appearance:none;display:block;width:100%;max-width:100%;min-height:46px;text-align:left}
 input[type=date]::-webkit-date-and-time-value{text-align:left}
 
+.warnbox{margin:0;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--warn) 22%,transparent);border:1px solid var(--warn);font-weight:600;line-height:1.4}
+.rsbox{border-color:var(--warn);border-width:2px}
+.rsg{border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.rsg summary{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;list-style:none;font-size:1.05rem}
+.rsg summary::-webkit-details-marker{display:none}
+.rsg[open] summary{margin-bottom:6px}
+.rsg .btn{margin-top:10px;width:100%}
 .pickbtn{width:100%;font-size:1.05rem;min-height:52px;background:var(--brand-soft);color:var(--brand);border:2px solid var(--brand)}
 .pkin{max-height:90%;grid-template-rows:auto auto minmax(0,1fr) auto auto}
 #pkl{overflow:auto;min-height:120px;-webkit-overflow-scrolling:touch}
@@ -241,7 +248,7 @@ const T={
   settings:"Réglages",agentName:"Nom de l'agent",city:"Ville",
   saved:"Commande enregistrée",copied:"Copié",needClient:"Écrivez le nom du client",needItem:"Ajoutez au moins un produit avec quantité et prix",
   noNumber:"Pas de numéro : le message s'ouvrira sans destinataire.",waNote:"WhatsApp s'ouvre dans un nouvel onglet. Si rien ne s'ouvre, utilisez Copier.",
-  barcode:"Code-barres",prodName:"Nom du produit",scanLbl:"Taper le code-barres",scanAdd:"Ajouter",pickBtn:"📦 Choisir dans le stock",pickT:"Choisir les produits",pickSearch:"Chercher un produit",pickDone:"Terminé",pickMax:"Plus de stock pour ce produit",pickNone:"Aucun produit trouvé",rpBtn:"📦 Choisir dans la liste des produits",rpT:"Marchandise reçue",rpNote:"Mettez la quantité reçue pour chaque produit, puis ajoutez tout en une fois.",rpHere:"ici",notFound:"Code inconnu : ajoutez ce produit dans Stock",codeDup:"Ce code-barres est déjà utilisé par",
+  barcode:"Code-barres",prodName:"Nom du produit",scanLbl:"Taper le code-barres",scanAdd:"Ajouter",pickBtn:"📦 Choisir dans le stock",pickT:"Choisir les produits",pickSearch:"Chercher un produit",pickDone:"Terminé",pickMax:"Plus de stock pour ce produit",pickNone:"Aucun produit trouvé",aideR:"Assistant",sendCodeA:"Envoyer le code par WhatsApp",aidesT:"Assistants (magasin de Dakar)",aidesNote:"Un assistant entre avec son code. Il peut ajouter les produits, les photos et les prix, et préparer les envois. Il ne voit pas l'argent, les commandes, les codes ni les Réglages.",aideName:"Nom de l'assistant",aideAdd:"+ Ajouter un assistant",aideNone:"Aucun assistant pour le moment.",aideDel:"Supprimer",aideDelSure:"Sûr ? Appuyez encore",aideNeed:"Écrivez le nom de l'assistant",aideInfo:"Vous êtes assistant : vous pouvez gérer les produits et préparer les envois. Pour le reste, demandez au patron.",rsT:"À réapprovisionner",rsNote:"Produits épuisés ou presque (5 ou moins) dans chaque point de vente.",rsOk:"✓ Tout est en stock dans les points de vente.",rsPrep:"Préparer l'envoi",rsPrepNote:"Quantités proposées pour arriver à 10 : changez-les si besoin.",rsRoute:"en route",rsProd:"produit(s)",wWave:"⚠️ Avant d'accepter : ouvrez votre application Wave / Orange Money et vérifiez que l'argent est bien arrivé. Une capture d'écran ne suffit pas : elle peut être fausse.",wCashLiv:"⚠️ Paiement à la livraison : appelez d'abord le client pour confirmer. Pour une ville loin, demandez le prix de la livraison avant d'envoyer.",wCashRet:"ℹ️ Le client paie au magasin : donnez les produits seulement après le paiement.",rpBtn:"📦 Choisir dans la liste des produits",rpT:"Marchandise reçue",rpNote:"Mettez la quantité reçue pour chaque produit, puis ajoutez tout en une fois.",rpHere:"ici",notFound:"Code inconnu : ajoutez ce produit dans Stock",codeDup:"Ce code-barres est déjà utilisé par",
   stockT:"Stock ici",given:"Le client donne (espèces)",changeL:"Monnaie à rendre",restPay:"Reste à payer",allPaid:"Payé juste, pas de monnaie",givenR:"Donné",changeR:"Monnaie rendue",pdfRep:"Rapport à imprimer (PDF)",pdfRec:"Reçu en PDF",pdfNote:"Le PDF s'ouvre dans le partage du téléphone : vous pouvez l'imprimer ou l'envoyer sur WhatsApp.",pdfNA:"Le PDF n'est pas disponible ici. Utilisez Copier.",signAgent:"Signature agent",signBoss:"Signature patron",paidS:"Payé",nCol:"N°",prodsCol:"Produits",edit:"Modifier",stockNote:"Seulement les produits reçus de Dakar pour ce point de vente. Chaque vente enlève la quantité du stock.",recvT:"Réception de Dakar",recvNote:"Quand une marchandise arrive de Dakar, ajoutez-la ici.",recvQty:"Quantité reçue",recvBtn:"Ajouter au stock",recvOk:"Stock mis à jour",recvNeed:"Écrivez le produit et la quantité reçue",newNeedPrice:"Nouveau produit : écrivez aussi le prix",
   inStock:"en stock",stockQ:"Stock",lastRecv:"Dernières réceptions",noStock:"Aucun produit en stock. Ajoutez la première réception de Dakar.",low:"Presque fini",out:"Épuisé",
   notInStock:"n'est pas dans le stock. Ajoutez-le dans Stock.",notEnough:"Stock insuffisant pour",left:"reste",recvToday:"Reçu de Dakar",stockLeft:"Stock restant",
@@ -270,7 +277,7 @@ Object.assign(T.fr,{addSt:"+ Ajouter du stock",addStT:"Ajouter du stock",whichCi
   arriving:"Marchandise en route",arrivingNote:"Comptez ce qui est arrivé, corrigez si besoin, puis confirmez. Le stock se met à jour tout seul.",confirmRecv:"Confirmer la réception",recvDone:"Réception confirmée, stock mis à jour",allArrived:"Tout est arrivé",
   bord:"BORDEREAU D'ENVOI",sac:"SAC",checkCol:"Arrivé",envOf:"Envoi",clientLink:"Lien pour vos clients",clientLinkNote:"Les clients qui ouvrent ce lien commandent directement chez vous.",dakar:"Magasin de Dakar",
   envNoCat:"n'est pas dans le catalogue",envRoute:"envoi(s) en route",photoErr:"Photo impossible à lire"});
-T.wo={"pickBtn":"📦 Tànn ci stock bi","pickT":"Tànn produit yi","pickSearch":"Seet benn produit","pickDone":"Pare na","pickMax":"Stock bi jeex na ci produit bii","pickNone":"Amul benn produit","rpBtn":"📦 Tànn ci list produit yi","rpT":"Marsandiis bi agsi","rpNote":"Bindal limu li agsi ci produit bu nekk, te yokk lépp benn yoon.","rpHere":"fii","addSt":"+ Yokk stock","addStT":"Yokk stock","whichCity":"Ci ban dëkk ?","howMany":"Ñaata pièce ?","addStBtn":"Yokk","addStOk":"Stock bi yokku na","noStockAny":"Stock 0 ci dëkk yépp : kiliyaan yi dañuy gis « Jeex na ». Yokkal stock ci benn dëkk (Marsandiis › dëkk, walla Yónnee).","stockIn":"Ci stock","promoT":"Promo","ppL":"Njëg promo","peL":"Bés bi promo bi di jeex (bu soxlaa)","noPromo":"Far promo bi","promoMsg":"Message promo ci kaw page bi (bu soxlaa)","promoPh":"Misaal : Promo Tabaski -20 % ci lait de corps yi","until":"ba","retS":"Mu ñëw jël","addrPh":"Quartier, mbedd, fu ñu xam","needAddr":"Bindal adress bi ñuy indi","closedPv":"Points de vente yu tëju","reopen":"Ubbiwaat (code bu bees)","reopened":"Point de vente bi ubbiwaat na","setupBan":"⚠️ Bindal sa tur ak say nimero (WhatsApp, Wave, Orange Money) ci Réglages","tNew": "Bu bees", "tList": "Kómand yi", "tStock": "Stock", "tToday": "Njaay", "tSet": "Réglages", "tDash": "Lépp", "newOrder": "Kómand bu bees", "client": "Turu kiliyaan bi", "phone": "Nimero kiliyaan bi", "products": "Marsandiis yi", "product": "Marsandiis", "qty": "Limu", "price": "Njëg", "addLine": "+ Yokk benn marsandiis", "total": "Lépp", "paid": "Li mu fey", "rest": "Li des", "status": "Fan la tollu", "save": "Denc te def reçu bi", "attente": "Mungi xaar", "confirmee": "Dëggal nañu ko", "prete": "Pare na", "livree": "Jox nañu ko", "orders": "Kómand yi", "all": "Yépp", "todayF": "Tey", "search": "Seet kiliyaan walla nimero reçu", "none": "Amul kómand fii.", "receipt": "Reçu", "receiptNo": "Reçu N°", "date": "Bés", "clientL": "Kiliyaan", "tel": "Tél", "agent": "Agent", "thanks": "Jërëjëf ci sa wóolu !", "sendClient": "Yónnee ko kiliyaan bi (WhatsApp)", "copy": "Copier reçu bi", "changeStatus": "Soppi fi mu tollu", "addPay": "Yokk fey", "close": "Tëj", "del": "Far", "delSure": "Bësaat ngir far", "sales": "Njaayu tey", "day": "Bés", "nOrders": "Kómand", "sold": "Li nga jaay", "cashed": "Xaalis bi dugg", "toCash": "Xaalis bi des", "byProd": "Marsandiis yi nga jaay", "sendBoss": "Yónnee ko patron bi (WhatsApp)", "copyRep": "Copier rapport bi", "settings": "Réglages", "agentName": "Turu agent bi", "city": "Dëkk", "saved": "Kómand bi denc nañu ko", "copied": "Copier nañu ko", "needClient": "Bindal turu kiliyaan bi", "needItem": "Yokkal benn marsandiis ak limu ak njëg", "noNumber": "Amul nimero : message bi dina ubbiku te kenn nekku ci.", "waNote": "WhatsApp dina ubbiku. Su ubbikuwul, bësal Copier.", "barcode": "Code-barres", "prodName": "Turu marsandiis bi", "scanLbl": "Bindal code-barres bi", "scanAdd": "Yokk", "notFound": "Code bii xamunu ko : yokkal marsandiis bi ci Stock", "codeDup": "Code-barres bii, beneen marsandiis moo ko am :", "stockT": "Stock bi fii", "given": "Li kiliyaan bi jox (xaalis)", "changeL": "Weccit bi ngay delloo", "restPay": "Li des ci fey bi", "allPaid": "Fey na lépp, amul weccit", "givenR": "Li mu jox", "changeR": "Weccit bi", "pdfRep": "Rapport ngir imprimer (PDF)", "pdfRec": "Reçu ci PDF", "pdfNote": "PDF bi dina ubbiku ci partage telefon bi : mën nga ko imprimer walla yónnee ko ci WhatsApp.", "pdfNA": "PDF amul fii. Jëfandikoo Copier.", "signAgent": "Signature agent", "signBoss": "Signature patron", "paidS": "Fey na", "nCol": "N°", "prodsCol": "Marsandiis", "edit": "Soppi", "stockNote": "Marsandiis yi jóge Dakar rekk ñoo fi nekk. Bépp njaay dafay wàññi stock bi.", "recvT": "Marsandiis bu jóge Dakar", "recvNote": "Bu marsandiis jógee Dakar, yokkal ko fii.", "recvQty": "Limu li agsi", "recvBtn": "Yokk ko ci stock bi", "recvOk": "Stock bi soppi na", "recvNeed": "Bindal marsandiis bi ak limu li agsi", "newNeedPrice": "Marsandiis bu bees : bindal itam njëg bi", "inStock": "ci stock", "stockQ": "Stock", "lastRecv": "Li mujj a agsi", "noStock": "Amul marsandiis ci stock. Yokkal li njëkk a jóge Dakar.", "low": "Lu bees a jeex", "out": "Jeex na", "notInStock": "nekkul ci stock bi. Yokkal ko ci Stock.", "notEnough": "Stock bi doyul ngir", "left": "des na", "recvToday": "Li jóge Dakar", "stockLeft": "Stock bi des", "rep": "RAPPORTU TEY", "paymentAmt": "Xaalis bi nga jot", "storeWarn": "Attention : telefon bii mënul denc data yi bu amul internet. Nekkal ci internet.", "login": "Bindal sa code", "loginBtn": "Dugg", "loginNote": "Patron bi am na code. Bépp point de vente am na code.", "badCode": "Code bi baaxul", "blocked": "Jéem nga lu bari. Jéemaatal ci 10 minit.", "net": "Amul internet. Jéemaatal.", "kicked": "Sa code soppi nañu ko. Laajal patron bi code bu bees bi.", "logout": "Génn", "logoutSure": "Bësaat ngir génn", "patron": "Patron", "loading": "Mungi yeb…", "pvSel": "Point de vente", "allPv": "Points yépp", "noPv": "Amul point de vente. Yokkal benn ci Réglages.", "goSet": "Dem ci Réglages", "dashT": "Points de vente yépp", "allTotal": "Lépp ci points yépp", "back": "← Points yépp", "lowAlert": "Stock bu bees a jeex", "pdfAll": "Rapport bu mag (PDF)", "copyAll": "Copier rapport bu mag bi", "repAll": "RAPPORT BU MAG", "shopT": "Boutique bi", "shop": "Turu boutique bi", "shopTel": "Nimero bi ci reçu yi", "addr": "Adress", "ownerT": "Patron bi", "ownerName": "Turu patron bi", "ownerWa": "WhatsApp patron bi (mooy jot rapport yi)", "pvsT": "Points de vente ak code yi", "pvsNote": "Bépp point de vente dafay dugg ak code bi, te dafay gis kómandam ak stockam rekk.", "addPvT": "Yokk benn point de vente", "agentWa": "WhatsApp agent bi", "addPvBtn": "Sos point de vente bi ak code bi", "codeL": "Code", "newCode": "Code bu bees", "newCodeSure": "Bësaat : code bu jëkk bi du dox ba pare", "sendCode": "Yónnee code bi agent bi", "noCode": "Amul code", "pvOff": "Tëj point de vente bii", "pvOffSure": "Bësaat ngir tëj", "needCity": "Bindal dëkk bi", "codeMade": "Code bi sos nañu ko", "myCodeT": "Sama code patron", "myCodeNote": "6 chiffres. Bul ko jox kenn.", "newCodeL": "Code bu bees (6 chiffres)", "newCode2": "Bindaatal code bu bees bi", "changeCode": "Soppi sama code", "codeFormat": "Code bi war na am 6 chiffres", "codeDiff": "Ñaari code yi yemuñu", "codeTaken": "Code bii am na ku ko jël, tànnal beneen", "codeOk": "Code bi soppi na", "loadingCodes": "Code yi mungi yeb…", "myPvT": "Sama point de vente", "askBoss": "Ngir soppi lii, laajal patron bi.", "langT": "Làkk", "importT": "Délloosi sauvegarde bu jëkk bi", "importNote": "Su point de vente bii doon jëfandikoo app bu jëkk bi : ci app bu jëkk bi, Réglages › Copier la sauvegarde, te nga coller texte bi fii.", "importBtn": "Importer", "imported": "Importer nañu ko", "badBackup": "Texte bii du sauvegarde bu baax", "access": "sa duggu ci app bi", "link": "Lien", "secret": "Bul jox kenn code bii.", "syncErr": "Amul internet : data yi dinañu dem bu internet delsee", "syncOk": "En ligne", "lowN": "bu bees a jeex", "firstCode": "Soppil code bu njëkk bii ci Réglages › Sama code patron.", "web": "En ligne · ngay ko dëggal", "annulee": "Neenal nañu ko", "tEnv": "Yónnee", "tProd": "Marsandiis", "webBanner": "kómand en ligne ngay dëggal", "webF": "En ligne", "webNew": "Kómand en ligne bu bees !", "webT": "Kómand en ligne", "accept": "Nangu (dafay wàññi stock bi)", "refuse": "Bañ", "refuseSure": "Bësaat ngir bañ", "cancelO": "Neenal kómand bi", "cancelSure": "Bësaat ngir neenal", "accepted": "Nangu nañu kómand bi", "modeL": "Mu ñëw jël / livraison", "ret": "Dina ñëw jël ko ci point de vente bi", "liv": "Livraison", "addrL": "Adress", "payL": "Fey", "cash": "Xaalis ci loxo", "wave": "Wave", "om": "Orange Money", "noteL": "Note", "waClientWeb": "Bindal kiliyaan bi (WhatsApp)", "catT": "Catalogue", "catNote": "Catalogue patron bi : turu yi ak njëg yi benn lañu fépp. Kiliyaan yi dañuy gis marsandiis yii ci page en ligne bi.", "addCat": "Yokk ko ci catalogue bi", "photo": "Nataal", "desc": "Leeral bu gàtt", "hideWeb": "Nëbbu na ci page en ligne bi", "showWeb": "Feeñ ci en ligne", "notInCat": "Marsandiis yu points de vente yi te nekkagul ci catalogue bi", "toCat": "+ Catalogue", "catNeed": "Bindal tur bi ak njëg bi", "catDup": "Marsandiis bii nekk na ba pare ci catalogue bi", "catSaved": "Catalogue bi soppi na", "webT2": "Page kómand ngir kiliyaan yi", "webOn": "Page en ligne bi ubbi na", "webOff": "Page en ligne bi tëju na", "openWeb": "Ubbi page bi", "closeWeb": "Tëj page bi", "shareWeb": "Séddoo lien bi ci WhatsApp", "copyLink": "Copier lien bi", "webMsg": "Kómandal ci nun en ligne : tànnal sa dëkk, sa marsandiis yi, te ñëw jël walla ñu indil la ko.", "payNums": "Nimero yi ngir fey (par défaut)", "waveN": "Nimero Wave", "omN": "Nimero Orange Money", "pvAddr": "Adressu point de vente bi", "pvPayNote": "Bu nekkul dara = nimero patron bi.", "envT": "Marsandiis yi ñuy yónnee points de vente yi", "newEnv": "Yónnee bu bees", "envTo": "Yónnee ko", "bags": "Limu sac yi / colis yi", "envSave": "Sos yónnee bi", "envNeed": "Yokkal benn marsandiis ak limu", "enRoute": "Ci yoon wi", "envRecv": "Agsi na", "envMiss": "des na", "envPdf": "Bordereau ngir def ko ci sac yi (PDF)", "envLabels": "Étiquettes sac yi (PDF)", "envWa": "Xamal agent bi (WhatsApp)", "envNone": "Amul yónnee.", "envSent": "Li ñu yónnee", "envGot": "Li agsi", "envDelSure": "Bësaat ngir far yónnee bi", "arriving": "Marsandiis ci yoon wi", "arrivingNote": "Waññil li agsi, soppi su soxlaa, te dëggal. Stock bi dina soppiku moom ci boppam.", "confirmRecv": "Dëggal ne agsi na", "recvDone": "Dëggal nañu ko, stock bi soppi na", "allArrived": "Lépp agsi na", "bord": "BORDEREAU D'ENVOI", "sac": "SAC", "checkCol": "Agsi na", "envOf": "Yónnee", "clientLink": "Lien ngir sa kiliyaan yi", "clientLinkNote": "Kiliyaan yi ubbi lien bii dinañu kómandee ci yaw.", "dakar": "Magasin Dakar", "envNoCat": "nekkul ci catalogue bi", "envRoute": "yónnee ci yoon wi", "photoErr": "Mënunu jàng nataal bi"};
+T.wo={"pickBtn":"📦 Tànn ci stock bi","pickT":"Tànn produit yi","pickSearch":"Seet benn produit","pickDone":"Pare na","pickMax":"Stock bi jeex na ci produit bii","pickNone":"Amul benn produit","aideR":"Ndimbal","sendCodeA":"Yónnee code bi ci WhatsApp","aidesT":"Ndimbal yi (magasin Dakar)","aidesNote":"Ndimbal dafay dugg ak code bi. Mën na yokk produit yi, nataal yi ak njëg yi, te waajal yónnee yi. Du gis xaalis bi, kómand yi, code yi ak Réglages.","aideName":"Turu ndimbal bi","aideAdd":"+ Yokk benn ndimbal","aideNone":"Amul ndimbal leegi.","aideDel":"Far","aideDelSure":"Wóor na ? Bësaatal","aideNeed":"Bindal turu ndimbal bi","aideInfo":"Yaw ndimbal nga : mën nga toppatoo produit yi te waajal yónnee yi. Li ci des, laajal patron bi.","rsT":"Li war a yokku","rsNote":"Produit yu jeex walla yu bëgg a jeex (5 walla lu yées) ci bépp bérab jaaykat.","rsOk":"✓ Lépp am na ci stock ci bérab yépp.","rsPrep":"Waajal yónnee bi","rsPrepNote":"Lim yi ñu la wax ngir agsi 10 : soppil leen bu soxlaa.","rsRoute":"ci yoon wi","rsProd":"produit","wWave":"⚠️ Bala ngay nangu : ubbil sa application Wave / Orange Money te seet ndax xaalis bi agsi na. Capture rekk doyul : mën na nekk lu fen.","wCashLiv":"⚠️ Fey ci livraison : woowal kiliyaan bi bala ngay yónnee. Su dëkk bi soree, laajal njëgu livraison bi bala ngay yónnee.","wCashRet":"ℹ️ Kiliyaan bi dina fey ci magasin bi : jox ko produit yi su feyee rekk.","rpBtn":"📦 Tànn ci list produit yi","rpT":"Marsandiis bi agsi","rpNote":"Bindal limu li agsi ci produit bu nekk, te yokk lépp benn yoon.","rpHere":"fii","addSt":"+ Yokk stock","addStT":"Yokk stock","whichCity":"Ci ban dëkk ?","howMany":"Ñaata pièce ?","addStBtn":"Yokk","addStOk":"Stock bi yokku na","noStockAny":"Stock 0 ci dëkk yépp : kiliyaan yi dañuy gis « Jeex na ». Yokkal stock ci benn dëkk (Marsandiis › dëkk, walla Yónnee).","stockIn":"Ci stock","promoT":"Promo","ppL":"Njëg promo","peL":"Bés bi promo bi di jeex (bu soxlaa)","noPromo":"Far promo bi","promoMsg":"Message promo ci kaw page bi (bu soxlaa)","promoPh":"Misaal : Promo Tabaski -20 % ci lait de corps yi","until":"ba","retS":"Mu ñëw jël","addrPh":"Quartier, mbedd, fu ñu xam","needAddr":"Bindal adress bi ñuy indi","closedPv":"Points de vente yu tëju","reopen":"Ubbiwaat (code bu bees)","reopened":"Point de vente bi ubbiwaat na","setupBan":"⚠️ Bindal sa tur ak say nimero (WhatsApp, Wave, Orange Money) ci Réglages","tNew": "Bu bees", "tList": "Kómand yi", "tStock": "Stock", "tToday": "Njaay", "tSet": "Réglages", "tDash": "Lépp", "newOrder": "Kómand bu bees", "client": "Turu kiliyaan bi", "phone": "Nimero kiliyaan bi", "products": "Marsandiis yi", "product": "Marsandiis", "qty": "Limu", "price": "Njëg", "addLine": "+ Yokk benn marsandiis", "total": "Lépp", "paid": "Li mu fey", "rest": "Li des", "status": "Fan la tollu", "save": "Denc te def reçu bi", "attente": "Mungi xaar", "confirmee": "Dëggal nañu ko", "prete": "Pare na", "livree": "Jox nañu ko", "orders": "Kómand yi", "all": "Yépp", "todayF": "Tey", "search": "Seet kiliyaan walla nimero reçu", "none": "Amul kómand fii.", "receipt": "Reçu", "receiptNo": "Reçu N°", "date": "Bés", "clientL": "Kiliyaan", "tel": "Tél", "agent": "Agent", "thanks": "Jërëjëf ci sa wóolu !", "sendClient": "Yónnee ko kiliyaan bi (WhatsApp)", "copy": "Copier reçu bi", "changeStatus": "Soppi fi mu tollu", "addPay": "Yokk fey", "close": "Tëj", "del": "Far", "delSure": "Bësaat ngir far", "sales": "Njaayu tey", "day": "Bés", "nOrders": "Kómand", "sold": "Li nga jaay", "cashed": "Xaalis bi dugg", "toCash": "Xaalis bi des", "byProd": "Marsandiis yi nga jaay", "sendBoss": "Yónnee ko patron bi (WhatsApp)", "copyRep": "Copier rapport bi", "settings": "Réglages", "agentName": "Turu agent bi", "city": "Dëkk", "saved": "Kómand bi denc nañu ko", "copied": "Copier nañu ko", "needClient": "Bindal turu kiliyaan bi", "needItem": "Yokkal benn marsandiis ak limu ak njëg", "noNumber": "Amul nimero : message bi dina ubbiku te kenn nekku ci.", "waNote": "WhatsApp dina ubbiku. Su ubbikuwul, bësal Copier.", "barcode": "Code-barres", "prodName": "Turu marsandiis bi", "scanLbl": "Bindal code-barres bi", "scanAdd": "Yokk", "notFound": "Code bii xamunu ko : yokkal marsandiis bi ci Stock", "codeDup": "Code-barres bii, beneen marsandiis moo ko am :", "stockT": "Stock bi fii", "given": "Li kiliyaan bi jox (xaalis)", "changeL": "Weccit bi ngay delloo", "restPay": "Li des ci fey bi", "allPaid": "Fey na lépp, amul weccit", "givenR": "Li mu jox", "changeR": "Weccit bi", "pdfRep": "Rapport ngir imprimer (PDF)", "pdfRec": "Reçu ci PDF", "pdfNote": "PDF bi dina ubbiku ci partage telefon bi : mën nga ko imprimer walla yónnee ko ci WhatsApp.", "pdfNA": "PDF amul fii. Jëfandikoo Copier.", "signAgent": "Signature agent", "signBoss": "Signature patron", "paidS": "Fey na", "nCol": "N°", "prodsCol": "Marsandiis", "edit": "Soppi", "stockNote": "Marsandiis yi jóge Dakar rekk ñoo fi nekk. Bépp njaay dafay wàññi stock bi.", "recvT": "Marsandiis bu jóge Dakar", "recvNote": "Bu marsandiis jógee Dakar, yokkal ko fii.", "recvQty": "Limu li agsi", "recvBtn": "Yokk ko ci stock bi", "recvOk": "Stock bi soppi na", "recvNeed": "Bindal marsandiis bi ak limu li agsi", "newNeedPrice": "Marsandiis bu bees : bindal itam njëg bi", "inStock": "ci stock", "stockQ": "Stock", "lastRecv": "Li mujj a agsi", "noStock": "Amul marsandiis ci stock. Yokkal li njëkk a jóge Dakar.", "low": "Lu bees a jeex", "out": "Jeex na", "notInStock": "nekkul ci stock bi. Yokkal ko ci Stock.", "notEnough": "Stock bi doyul ngir", "left": "des na", "recvToday": "Li jóge Dakar", "stockLeft": "Stock bi des", "rep": "RAPPORTU TEY", "paymentAmt": "Xaalis bi nga jot", "storeWarn": "Attention : telefon bii mënul denc data yi bu amul internet. Nekkal ci internet.", "login": "Bindal sa code", "loginBtn": "Dugg", "loginNote": "Patron bi am na code. Bépp point de vente am na code.", "badCode": "Code bi baaxul", "blocked": "Jéem nga lu bari. Jéemaatal ci 10 minit.", "net": "Amul internet. Jéemaatal.", "kicked": "Sa code soppi nañu ko. Laajal patron bi code bu bees bi.", "logout": "Génn", "logoutSure": "Bësaat ngir génn", "patron": "Patron", "loading": "Mungi yeb…", "pvSel": "Point de vente", "allPv": "Points yépp", "noPv": "Amul point de vente. Yokkal benn ci Réglages.", "goSet": "Dem ci Réglages", "dashT": "Points de vente yépp", "allTotal": "Lépp ci points yépp", "back": "← Points yépp", "lowAlert": "Stock bu bees a jeex", "pdfAll": "Rapport bu mag (PDF)", "copyAll": "Copier rapport bu mag bi", "repAll": "RAPPORT BU MAG", "shopT": "Boutique bi", "shop": "Turu boutique bi", "shopTel": "Nimero bi ci reçu yi", "addr": "Adress", "ownerT": "Patron bi", "ownerName": "Turu patron bi", "ownerWa": "WhatsApp patron bi (mooy jot rapport yi)", "pvsT": "Points de vente ak code yi", "pvsNote": "Bépp point de vente dafay dugg ak code bi, te dafay gis kómandam ak stockam rekk.", "addPvT": "Yokk benn point de vente", "agentWa": "WhatsApp agent bi", "addPvBtn": "Sos point de vente bi ak code bi", "codeL": "Code", "newCode": "Code bu bees", "newCodeSure": "Bësaat : code bu jëkk bi du dox ba pare", "sendCode": "Yónnee code bi agent bi", "noCode": "Amul code", "pvOff": "Tëj point de vente bii", "pvOffSure": "Bësaat ngir tëj", "needCity": "Bindal dëkk bi", "codeMade": "Code bi sos nañu ko", "myCodeT": "Sama code patron", "myCodeNote": "6 chiffres. Bul ko jox kenn.", "newCodeL": "Code bu bees (6 chiffres)", "newCode2": "Bindaatal code bu bees bi", "changeCode": "Soppi sama code", "codeFormat": "Code bi war na am 6 chiffres", "codeDiff": "Ñaari code yi yemuñu", "codeTaken": "Code bii am na ku ko jël, tànnal beneen", "codeOk": "Code bi soppi na", "loadingCodes": "Code yi mungi yeb…", "myPvT": "Sama point de vente", "askBoss": "Ngir soppi lii, laajal patron bi.", "langT": "Làkk", "importT": "Délloosi sauvegarde bu jëkk bi", "importNote": "Su point de vente bii doon jëfandikoo app bu jëkk bi : ci app bu jëkk bi, Réglages › Copier la sauvegarde, te nga coller texte bi fii.", "importBtn": "Importer", "imported": "Importer nañu ko", "badBackup": "Texte bii du sauvegarde bu baax", "access": "sa duggu ci app bi", "link": "Lien", "secret": "Bul jox kenn code bii.", "syncErr": "Amul internet : data yi dinañu dem bu internet delsee", "syncOk": "En ligne", "lowN": "bu bees a jeex", "firstCode": "Soppil code bu njëkk bii ci Réglages › Sama code patron.", "web": "En ligne · ngay ko dëggal", "annulee": "Neenal nañu ko", "tEnv": "Yónnee", "tProd": "Marsandiis", "webBanner": "kómand en ligne ngay dëggal", "webF": "En ligne", "webNew": "Kómand en ligne bu bees !", "webT": "Kómand en ligne", "accept": "Nangu (dafay wàññi stock bi)", "refuse": "Bañ", "refuseSure": "Bësaat ngir bañ", "cancelO": "Neenal kómand bi", "cancelSure": "Bësaat ngir neenal", "accepted": "Nangu nañu kómand bi", "modeL": "Mu ñëw jël / livraison", "ret": "Dina ñëw jël ko ci point de vente bi", "liv": "Livraison", "addrL": "Adress", "payL": "Fey", "cash": "Xaalis ci loxo", "wave": "Wave", "om": "Orange Money", "noteL": "Note", "waClientWeb": "Bindal kiliyaan bi (WhatsApp)", "catT": "Catalogue", "catNote": "Catalogue patron bi : turu yi ak njëg yi benn lañu fépp. Kiliyaan yi dañuy gis marsandiis yii ci page en ligne bi.", "addCat": "Yokk ko ci catalogue bi", "photo": "Nataal", "desc": "Leeral bu gàtt", "hideWeb": "Nëbbu na ci page en ligne bi", "showWeb": "Feeñ ci en ligne", "notInCat": "Marsandiis yu points de vente yi te nekkagul ci catalogue bi", "toCat": "+ Catalogue", "catNeed": "Bindal tur bi ak njëg bi", "catDup": "Marsandiis bii nekk na ba pare ci catalogue bi", "catSaved": "Catalogue bi soppi na", "webT2": "Page kómand ngir kiliyaan yi", "webOn": "Page en ligne bi ubbi na", "webOff": "Page en ligne bi tëju na", "openWeb": "Ubbi page bi", "closeWeb": "Tëj page bi", "shareWeb": "Séddoo lien bi ci WhatsApp", "copyLink": "Copier lien bi", "webMsg": "Kómandal ci nun en ligne : tànnal sa dëkk, sa marsandiis yi, te ñëw jël walla ñu indil la ko.", "payNums": "Nimero yi ngir fey (par défaut)", "waveN": "Nimero Wave", "omN": "Nimero Orange Money", "pvAddr": "Adressu point de vente bi", "pvPayNote": "Bu nekkul dara = nimero patron bi.", "envT": "Marsandiis yi ñuy yónnee points de vente yi", "newEnv": "Yónnee bu bees", "envTo": "Yónnee ko", "bags": "Limu sac yi / colis yi", "envSave": "Sos yónnee bi", "envNeed": "Yokkal benn marsandiis ak limu", "enRoute": "Ci yoon wi", "envRecv": "Agsi na", "envMiss": "des na", "envPdf": "Bordereau ngir def ko ci sac yi (PDF)", "envLabels": "Étiquettes sac yi (PDF)", "envWa": "Xamal agent bi (WhatsApp)", "envNone": "Amul yónnee.", "envSent": "Li ñu yónnee", "envGot": "Li agsi", "envDelSure": "Bësaat ngir far yónnee bi", "arriving": "Marsandiis ci yoon wi", "arrivingNote": "Waññil li agsi, soppi su soxlaa, te dëggal. Stock bi dina soppiku moom ci boppam.", "confirmRecv": "Dëggal ne agsi na", "recvDone": "Dëggal nañu ko, stock bi soppi na", "allArrived": "Lépp agsi na", "bord": "BORDEREAU D'ENVOI", "sac": "SAC", "checkCol": "Agsi na", "envOf": "Yónnee", "clientLink": "Lien ngir sa kiliyaan yi", "clientLinkNote": "Kiliyaan yi ubbi lien bii dinañu kómandee ci yaw.", "dakar": "Magasin Dakar", "envNoCat": "nekkul ci catalogue bi", "envRoute": "yónnee ci yoon wi", "photoErr": "Mënunu jàng nataal bi"};
 const STATUSES=["attente","confirmee","prete","livree"];
 const WEB_URL="https://seck93723-lang.github.io/lareinedubio-commande/";
 
@@ -304,9 +311,11 @@ function loadLocal(){try{SES=JSON.parse(localStorage.getItem(K_SES)||"null")}cat
 function writeLocal(){try{localStorage.setItem(K_SES,JSON.stringify(SES));localStorage.setItem(K_DB,JSON.stringify({code:SES&&SES.code,C,SNAP,LAST}));storageOk=true}catch(e){storageOk=false}}
 const CFG=()=>Object.assign({},CFG0,C.cfg.main||{});
 const isBoss=()=>SES&&SES.role==="patron";
+const isAide=()=>SES&&SES.role==="aide";
+const isStaff=()=>isBoss()||isAide();
 const PVS=()=>Object.values(C.pv).filter(p=>!p.off).sort((a,b)=>String(a.city).localeCompare(String(b.city)));
 let selPv="";try{selPv=localStorage.getItem(K_SEL)||""}catch(e){}
-function CUR(){if(!SES)return"";if(!isBoss())return SES.pv;const ps=PVS();return ps.find(p=>p.id===selPv)?selPv:(ps[0]?ps[0].id:"")}
+function CUR(){if(!SES)return"";if(!isStaff())return SES.pv;const ps=PVS();return ps.find(p=>p.id===selPv)?selPv:(ps[0]?ps[0].id:"")}
 function setSel(id){selPv=id;try{localStorage.setItem(K_SEL,id)}catch(e){}}
 const PV=id=>C.pv[id]||{id,city:"?",agent:""};
 const prods=pv=>Object.values(C.prod).filter(p=>p.pv===pv).sort((a,b)=>String(a.n).localeCompare(String(b.n)));
@@ -382,8 +391,8 @@ const errMsg=e=>{const m=String(e&&e.message||e);return m==="CODE"?t("badCode"):
 
 /* ---------- vue ---------- */
 let view="", listFilter="today", listPv="all", listQ="", repDay=today(), dashPv="", draft=null;
-function tabsFor(){return isBoss()?[["dash","tDash"],["new","tNew"],["list","tList"],["env","tEnv"],["stock","tProd"],["set","tSet"]]:[["new","tNew"],["list","tList"],["stock","tStock"],["today","tToday"],["set","tSet"]]}
-function badge(v){const pv=isBoss()?"":SES.pv;if(v==="list")return webPending(pv).length;if(v==="stock"&&!isBoss())return envRoute(pv).length;if(v==="env"&&isBoss())return envRoute("").length;return 0}
+function tabsFor(){if(isAide())return [["env","tEnv"],["stock","tProd"],["set","tSet"]];return isBoss()?[["dash","tDash"],["new","tNew"],["list","tList"],["env","tEnv"],["stock","tProd"],["set","tSet"]]:[["new","tNew"],["list","tList"],["stock","tStock"],["today","tToday"],["set","tSet"]]}
+function badge(v){const pv=isStaff()?"":SES.pv;if(v==="list")return webPending(pv).length;if(v==="stock"&&!isStaff())return envRoute(pv).length;if(v==="env"&&isStaff())return envRoute("").length;return 0}
 const ICONS={
  dash:'<path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/>',
  new:'<path d="M12 5v14M5 12h14"/>',
@@ -394,7 +403,7 @@ const ICONS={
  set:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>'};
 function header(){const c=CFG();
   document.getElementById("hShop").textContent=c.shop||"La Reine du Bio";
-  let sub="";if(SES){if(isBoss())sub=t("patron")+(c.owner?" · "+c.owner:"");else{const p=PV(SES.pv);sub=[p.agent,p.city].filter(Boolean).join(" · ")}}
+  let sub="";if(SES){if(isAide())sub=t("aideR")+(SES.label?" · "+SES.label:"");else if(isBoss())sub=t("patron")+(c.owner?" · "+c.owner:"");else{const p=PV(SES.pv);sub=[p.agent,p.city].filter(Boolean).join(" · ")}}
   document.getElementById("hAgent").textContent=sub;
   document.getElementById("lfr").className=LANG==="fr"?"on":"";
   document.getElementById("lit").className=LANG==="wo"?"on":"";
@@ -410,7 +419,7 @@ function render(){dirty=false;
   header();const v=document.getElementById("view");
   if(!SES){v.innerHTML=vLogin();bLogin();return}
   const V={dash:[vDash,bDash],new:[vNew,bNew],list:[vList,bList],stock:[vStock,bStock],today:[vToday,bToday],set:[vSet,bSet],env:[vEnv,bEnv]}[view];
-  const pv=isBoss()?"":SES.pv,nw=webPending(pv).length,ne=isBoss()?0:envRoute(pv).length;
+  const pv=isStaff()?"":SES.pv,nw=isAide()?0:webPending(pv).length,ne=isStaff()?0:envRoute(pv).length;
   const cf=CFG(),needSetup=isBoss()&&(!cf.owner||!cf.wa)&&view!=="set";
   const ban=(needSetup?`<button type="button" class="banner" id="bset">${t("setupBan")}</button>`:"")+(nw&&!(view==="list"&&listFilter==="web")?`<button type="button" class="banner" id="bweb">🛒 ${nw} ${t("webBanner")}</button>`:"")+(ne&&view!=="stock"?`<button type="button" class="banner env" id="benv">📦 ${ne} ${t("envRoute")}</button>`:"");
   v.innerHTML=(storageOk?"":`<p class="note unpaid">${t("storeWarn")}</p>`)+ban+V[0]();V[1]();
@@ -426,14 +435,14 @@ function vLogin(){return `<form class="login panel" id="lf" autocomplete="off">
   <button class="btn accent" type="submit" id="lbtn">${t("loginBtn")}</button>
   <p class="note" style="margin:0">${t("loginNote")}</p></form>
   ${window.REINE_DEMO?`<div class="panel demo"><h3>👀 Aperçu / Anteprima</h3>
-   <p class="note" style="margin:0">Codes d'essai : <b>515263</b> = patron · <b>111111</b> = Louga (Moussa) · <b>222222</b> = Thiès (Fatou)</p>
+   <p class="note" style="margin:0">Codes d'essai : <b>515263</b> = patron · <b>111111</b> = Louga (Moussa) · <b>222222</b> = Thiès (Fatou) · <b>333333</b> = assistant (Ibrahima)</p>
    <a class="btn ghost small" href="index.html">🛒 Page des clients</a><button type="button" class="btn ghost small" onclick="demoReset()">↺ Recommencer l'aperçu</button></div>`:""}`}
 function bLogin(){const f=document.getElementById("lf"),inp=document.getElementById("lcode");
   inp.oninput=()=>{inp.value=inp.value.replace(/\D/g,"").slice(0,6)};
   f.onsubmit=async e=>{e.preventDefault();const code=inp.value.trim();if(code.length!==6)return toast(t("codeFormat"));
     const b=document.getElementById("lbtn");b.disabled=true;b.textContent=t("loading");
     try{const r=await rpc("reine_login",{p_code:code});if(r.err)throw new Error(r.err);
-      SES={code,role:r.role,pv:r.pv||"",shop:r.shop};C=emptyC();SNAP={};LAST=EPOCH;loginMsg="";
+      SES={code,role:r.role,pv:r.pv||"",shop:r.shop,label:r.label||""};C=emptyC();SNAP={};LAST=EPOCH;loginMsg="";
       await pull();view="";syncSt="ok";render();if(isBoss()&&code==="515263"&&!window.REINE_DEMO)toast(t("firstCode"))}
     catch(err){SES=null;loginMsg=errMsg(err);render()}}}
 
@@ -621,6 +630,7 @@ function openReceipt(id){const o=C.order[id];if(!o)return;delArm=false;let canAr
      <div class="stk"><span class="sub">${t("payL")}</span><span class="nm">${payTxt(o)}</span></div>
      ${o.note?`<div class="stk"><span class="sub">${t("noteL")}</span><span class="nm">${esc(o.note)}</span></div>`:""}
      <a class="btn wa small" href="${waLink(o.phone,webReplyText(o))}" target="_blank" rel="noopener">${t("waClientWeb")}</a>
+     ${isWeb?`<p class="warnbox">${o.pay==="wave"||o.pay==="om"?t("wWave"):o.mode==="liv"?t("wCashLiv"):t("wCashRet")}</p>`:""}
      ${isWeb?`<div class="actions"><button type="button" class="btn danger" id="wref">${t("refuse")}</button><button type="button" class="btn accent" id="wacc">${t("accept")}</button></div>`:""}
     </div>`:""}
    <div class="ticket ${isWeb||dead?"faded":""}">
@@ -680,13 +690,13 @@ function openReceipt(id){const o=C.order[id];if(!o)return;delArm=false;let canAr
 
 /* ---------- STOCK / CATALOGUE ---------- */
 let rv={n:"",b:"",p:"",q:""},arm="",catMode=true;
-function stockPicker(){if(!isBoss())return "";const ps=PVS(),cur=CUR();
+function stockPicker(){if(!isStaff())return "";const ps=PVS(),cur=CUR();
   return `<div class="chips" role="group" aria-label="${t("pvSel")}"><button type="button" class="chip ${catMode?"on":""}" data-catm>${t("catT")}</button>${ps.map(p=>`<button type="button" class="chip ${!catMode&&p.id===cur?"on":""}" data-pvsel="${p.id}">${esc(p.city)}</button>`).join("")}</div>`}
 function vStock(){
-  if(isBoss()&&(catMode||!CUR()))return `<h2>${t("tProd")}</h2><div class="stack">${stockPicker()}${vCatalog()}</div>`;
+  if(isStaff()&&(catMode||!CUR()))return `<h2>${t("tProd")}</h2><div class="stack">${stockPicker()}${vCatalog()}</div>`;
   const pv=CUR(),ps=prods(pv),rc=recvOf(pv),er=envRoute(pv);
   const names=[...new Set([...ps.map(p=>p.n),...CATS().map(c=>c.n)])];
-  return `<h2>${isBoss()?t("tProd")+" · "+esc(PV(pv).city):t("stockT")}</h2>
+  return `<h2>${isStaff()?t("tProd")+" · "+esc(PV(pv).city):t("stockT")}</h2>
   <div class="stack">
    ${stockPicker()}
    ${er.length?`<div class="panel arrive"><h3>📦 ${t("arriving")}</h3>${er.map(e=>`<button type="button" class="order" data-arr="${e.id}"><div class="l1"><span class="who num">${esc(e.ref)}</span><b class="num">${e.items.reduce((a,i)=>a+i.q,0)}</b></div><div class="meta"><span>${dstr(e.date)}</span><span>${e.bags||1} ${t("sac").toLowerCase()}</span></div></button>`).join("")}</div>`:""}
@@ -722,7 +732,7 @@ function newProd(n,pv,price,b){const c=findCat(n);const p={id:"p"+uid(),pv,n:c?c
 function bStock(){
   document.querySelectorAll("[data-catm]").forEach(b=>b.onclick=()=>{catMode=true;render()});
   document.querySelectorAll("[data-pvsel]").forEach(b=>b.onclick=()=>{catMode=false;setSel(b.dataset.pvsel);render()});
-  if(isBoss()&&(catMode||!CUR()))return bCatalog();
+  if(isStaff()&&(catMode||!CUR()))return bCatalog();
   document.querySelectorAll("[data-arr]").forEach(b=>b.onclick=()=>openArrival(b.dataset.arr));
   const rf=document.getElementById("rf");if(!rf)return;const pv=CUR();
   document.getElementById("rpb").onclick=()=>openRecvPick(pv);
@@ -790,12 +800,12 @@ function readImg(file){return new Promise((res,rej)=>{const r=new FileReader();r
   cvs.getContext("2d").drawImage(im,0,0,cvs.width,cvs.height);res(cvs.toDataURL("image/jpeg",.62))};im.src=r.result};r.readAsDataURL(file)})}
 function vCatalog(){const c=CFG(),on=c.web==="on",cats=CATS();
   const missing=[...new Map(Object.values(C.prod).filter(p=>!findCat(p.n)).map(p=>[p.n.trim().toLowerCase(),p])).values()];
-  return `<div class="panel"><h3>🛒 ${t("webT2")}</h3>
+  return `${isBoss()?`<div class="panel"><h3>🛒 ${t("webT2")}</h3>
     <p class="note" style="margin:0"><b style="color:${on?"var(--ok)":"var(--bad)"}">● ${on?t("webOn"):t("webOff")}</b></p>
     <div class="codebox" style="font:600 .85rem var(--f-mono);overflow-wrap:anywhere">${esc(WEB_URL)}</div>
     <label>🎉 ${t("promoMsg")}<input id="wpromo" value="${esc(c.promo||"")}" placeholder="${t("promoPh")}"></label>
     <div class="actions"><button type="button" class="btn ${on?"ghost":"accent"}" id="wtog">${on?t("closeWeb"):t("openWeb")}</button><button type="button" class="btn ghost" id="wcopy">${t("copyLink")}</button>
-    <a class="btn wa full" href="https://wa.me/?text=${encodeURIComponent("*"+c.shop+"*\n"+t("webMsg")+"\n"+WEB_URL)}" target="_blank" rel="noopener">${t("shareWeb")}</a></div><textarea id="wta" rows="2" hidden></textarea></div>
+    <a class="btn wa full" href="https://wa.me/?text=${encodeURIComponent("*"+c.shop+"*\n"+t("webMsg")+"\n"+WEB_URL)}" target="_blank" rel="noopener">${t("shareWeb")}</a></div><textarea id="wta" rows="2" hidden></textarea></div>`:""}
    <p class="note" style="margin:0">${t("catNote")}</p>
    <form class="panel" id="cf" autocomplete="off"><h3>${t("addCat")}</h3>
     <label>${t("prodName")}<input id="c_n" value="${esc(cv.n)}" placeholder="Ex. Lait de corps Teint noir"></label>
@@ -837,8 +847,8 @@ function renameAll(oldN,newN){Object.values(C.prod).forEach(p=>{if(p.n.trim().to
 function priceAll(n,price){Object.values(C.prod).forEach(p=>{if(p.n.trim().toLowerCase()===n.trim().toLowerCase())p.p=price})}
 function bCatalog(){
   const cfgSet=(k,v)=>{const c=C.cfg.main||(C.cfg.main={...CFG0});c.id="main";c.pv="";c[k]=v;save()};
-  document.getElementById("wtog").onclick=()=>{cfgSet("web",CFG().web==="on"?"":"on");render()};
-  document.getElementById("wcopy").onclick=()=>copyText(WEB_URL,document.getElementById("wta"));
+  if(document.getElementById("wtog"))document.getElementById("wtog").onclick=()=>{cfgSet("web",CFG().web==="on"?"":"on");render()};
+  if(document.getElementById("wcopy"))document.getElementById("wcopy").onclick=()=>copyText(WEB_URL,document.getElementById("wta"));
   const f=document.getElementById("cf"),rd=()=>{cv.n=val("c_n");cv.p=val("c_p");cv.b=val("c_b");cv.d=val("c_d")};
   f.addEventListener("input",rd);
   document.getElementById("c_img").onchange=async e=>{rd();const fl=e.target.files[0];if(!fl)return;try{cv.img=await readImg(fl);render()}catch(err){toast(t("photoErr"))}};
@@ -859,11 +869,20 @@ function bCatalog(){
 /* ---------- ENVOIS ---------- */
 let ed=null,envPv="";
 function newEnvDraft(){return{items:[{n:"",q:""}],bags:"1",note:""}}
+const LOWQ=5,FILLQ=10;
+function restockOf(pv){const route={};envRoute(pv).forEach(e=>e.items.forEach(i=>{const k=i.n.trim().toLowerCase();route[k]=(route[k]||0)+num(i.q)}));
+  return prods(pv).map(p=>({n:p.n,s:p.s,r:route[p.n.trim().toLowerCase()]||0})).filter(x=>x.s<=LOWQ&&x.s+x.r<=LOWQ).sort((a,b)=>a.s-b.s||a.n.localeCompare(b.n))}
+function restockPanel(){const gs=PVS().map(p=>({p,items:restockOf(p.id)})).filter(g=>g.items.length);
+  return `<div class="panel rsbox"><h3>⚠️ ${t("rsT")}</h3><p class="note" style="margin:0">${t("rsNote")}</p>
+   ${gs.length?gs.map(g=>`<details class="rsg"><summary><b>${esc(g.p.city)}</b><span class="pill s-attente">${g.items.length} ${t("rsProd")}</span></summary>
+     ${g.items.map(i=>`<div class="stk"><span class="nm">${esc(i.n)}</span><span class="num ${i.s<=0?"unpaid":""}">${i.s<=0?t("out"):i.s+" "+t("inStock")}${i.r?` · +${i.r} ${t("rsRoute")}`:""}</span></div>`).join("")}
+     <button type="button" class="btn accent small" data-rsp="${g.p.id}">📦 ${t("rsPrep")} · ${esc(g.p.city)}</button></details>`).join("")
+    :`<p class="note" style="margin:0;color:var(--ok)">${t("rsOk")}</p>`}</div>`}
 function vEnv(){const ps=PVS();if(!ed)ed=newEnvDraft();
   if(!ps.length)return `<h2>${t("envT")}</h2>${pvPicker()}`;
   if(!ps.find(p=>p.id===envPv))envPv=ps[0].id;
   const list=envsOf("");
-  return `<h2>${t("envT")}</h2><div class="stack">
+  return `<h2>${t("envT")}</h2><div class="stack">${restockPanel()}
    <form class="panel" id="ef" autocomplete="off"><h3>${t("newEnv")}</h3>
     <label style="margin:0">${t("envTo")}</label>
     <div class="chips">${ps.map(p=>`<button type="button" class="chip ${p.id===envPv?"on":""}" data-epv="${p.id}">${esc(p.city)}</button>`).join("")}</div>
@@ -881,6 +900,9 @@ function envCard(e){return `<button type="button" class="order" data-env="${e.id
   <div class="meta"><span class="num">${esc(e.ref)}</span><span>${dstr(e.date)}</span>${envState(e)}</div></button>`}
 function readEnv(){if(!ed||!document.getElementById("ef"))return;ed.bags=val("ebags");ed.note=val("enote");ed.items=ed.items.map((_,i)=>({n:val("en"+i),q:val("eq"+i)}))}
 function bEnv(){bPicker();const f=document.getElementById("ef");
+  document.querySelectorAll("[data-rsp]").forEach(b=>b.onclick=()=>{const pv=b.dataset.rsp;
+    ed={items:restockOf(pv).map(i=>({n:i.n,q:String(Math.max(1,FILLQ-Math.max(0,i.s)-i.r))})),bags:"1",note:""};envPv=pv;render();
+    const ef=document.getElementById("ef");if(ef)ef.scrollIntoView({behavior:"smooth",block:"start"});toast(t("rsPrepNote"))});
   document.querySelectorAll("[data-env]").forEach(b=>b.onclick=()=>openEnv(b.dataset.env));
   if(!f)return;
   document.querySelectorAll("[data-epv]").forEach(b=>b.onclick=()=>{readEnv();envPv=b.dataset.epv;render()});
@@ -907,9 +929,9 @@ function openEnv(id){const e=C.env[id];if(!e)return;let a=false;const sh=documen
     ${e.items.map((i,k)=>`<tr><td>${esc(i.n)}</td><td class="r num">${i.q}</td>${e.status==="recv"?`<td class="r num ${num(got[k])<i.q?"unpaid":""}">${num(got[k])}</td>`:""}</tr>`).join("")}</tbody></table></div>
    <button type="button" class="btn accent" id="epdf">${t("envPdf")}</button>
    <button type="button" class="btn ghost" id="elab">${t("envLabels")}</button>
-   ${isBoss()?`<a class="btn wa" href="${waLink(P.wa,envWaText(e))}" target="_blank" rel="noopener">${t("envWa")}</a>`:""}
+   ${isStaff()?`<a class="btn wa" href="${waLink(P.wa,envWaText(e))}" target="_blank" rel="noopener">${t("envWa")}</a>`:""}
    ${e.status!=="recv"?`<button type="button" class="btn" id="earr">${t("confirmRecv")}</button>`:""}
-   <div class="actions">${isBoss()&&e.status!=="recv"?`<button type="button" class="btn danger" id="edel">${t("del")}</button>`:"<span></span>"}<button type="button" class="btn" id="eclose">${t("close")}</button></div>
+   <div class="actions">${isStaff()&&e.status!=="recv"?`<button type="button" class="btn danger" id="edel">${t("del")}</button>`:"<span></span>"}<button type="button" class="btn" id="eclose">${t("close")}</button></div>
   </div></div>`;
   const close=()=>{sh.innerHTML="";render()};
   document.getElementById("eclose").onclick=close;document.getElementById("sh").onclick=x=>{if(x.target.id==="sh")close()};
@@ -930,7 +952,7 @@ function openArrival(id){const e=C.env[id];if(!e)return;const sh=document.getEle
     const got=e.items.map((_,k)=>num(val("ag"+k)));const d=new Date().toISOString();
     e.items.forEach((i,k)=>{const g=got[k];if(!g)return;let p=findP(i.n,e.pv);if(!p)p=newProd(i.n,e.pv,0,"");p.s+=g;
       const r={id:"r"+uid(),pv:e.pv,d,n:p.n,q:g,env:e.ref};C.recv[r.id]=r});
-    e.got=got;e.status="recv";e.recvAt=d;e.recvBy=isBoss()?t("patron"):(PV(e.pv).agent||"");save();toast(t("recvDone"));close()};
+    e.got=got;e.status="recv";e.recvAt=d;e.recvBy=isBoss()?t("patron"):isAide()?(SES.label||t("aideR")):(PV(e.pv).agent||"");save();toast(t("recvDone"));close()};
 }
 
 /* ---------- VENTES / RAPPORT ---------- */
@@ -1014,9 +1036,23 @@ function generalText(day){const d=new Date(day+"T12:00").toLocaleDateString("fr-
    `*${t("allTotal")}*`,`${t("nOrders")}: ${all.os.length}`,`${t("sold")}: ${fmt(all.sold)}`,`${t("cashed")}: ${fmt(all.cashed)}`,`${t("toCash")}: ${fmt(all.sold-all.cashed)}`].join("\n")}
 
 /* ---------- RÉGLAGES ---------- */
-let codes=null,codesErr="";
-async function loadCodes(){try{const r=await rpc("reine_codes_list",{p_code:SES.code});if(r.err)throw new Error(r.err);codes={};(r.codes||[]).forEach(x=>codes[x.pv]=x.code);codesErr=""}catch(e){codesErr=errMsg(e)}
-  if(view==="set"&&!document.getElementById("sheet").innerHTML)fillCodes()}
+let codes=null,codesErr="",aides=null;
+function aidesHtml(){if(!aides)return `<p class="note" style="margin:0">${esc(codesErr||t("loadingCodes"))}</p>`;
+  if(!aides.length)return `<p class="note" style="margin:0">${t("aideNone")}</p>`;
+  return aides.map(a=>`<div class="pvset"><h3>👤 ${esc(a.label||"—")}</h3>
+    <div class="codebox"><span>${t("codeL")}</span><b>${esc(a.code)}</b></div>
+    <a class="btn wa small" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(`*${CFG().shop}* – ${t("access")}\n${t("aideR")}: ${a.label||""}\n${t("link")}: ${APP_URL}\n${t("codeL")}: *${a.code}*\n${t("secret")}`)}">${t("sendCodeA")}</a>
+    <div class="actions"><button type="button" class="btn ghost small" data-anc="${esc(a.id)}">${t("newCode")}</button><button type="button" class="btn danger small" data-adel="${esc(a.id)}">${t("aideDel")}</button></div></div>`).join("")}
+function fillAides(){const b=document.getElementById("aidebox");if(!b)return;b.innerHTML=aidesHtml();bAides()}
+async function setAide(id,label){for(let i=0;i<5;i++){const c=rnd6();const r=await rpc("reine_aide_set",{p_code:SES.code,p_id:id,p_label:label,p_new:c});
+    if(r.ok)return c;if(r.err!=="PRIS")throw new Error(r.err)}throw new Error("PRIS")}
+function bAides(){
+  document.querySelectorAll("[data-anc]").forEach(b=>b.onclick=async()=>{const id=b.dataset.anc,a=(aides||[]).find(x=>x.id===id);if(!a)return;if(arm!=="anc"+id){arm="anc"+id;b.textContent=t("newCodeSure");return}arm="";
+    b.disabled=true;try{await setAide(id,a.label);toast(t("codeMade"));await loadCodes()}catch(e){toast(errMsg(e));b.disabled=false}});
+  document.querySelectorAll("[data-adel]").forEach(b=>b.onclick=async()=>{const id=b.dataset.adel;if(arm!=="adel"+id){arm="adel"+id;b.textContent=t("aideDelSure");return}arm="";
+    b.disabled=true;try{const r=await rpc("reine_aide_del",{p_code:SES.code,p_id:id});if(r.err)throw new Error(r.err);await loadCodes()}catch(e){toast(errMsg(e));b.disabled=false}})}
+async function loadCodes(){try{const r=await rpc("reine_codes_list",{p_code:SES.code});if(r.err)throw new Error(r.err);codes={};(r.codes||[]).forEach(x=>codes[x.pv]=x.code);aides=r.aides||[];codesErr=""}catch(e){codesErr=errMsg(e)}
+  if(view==="set"&&!document.getElementById("sheet").innerHTML){fillCodes();fillAides()}}
 function fillCodes(){document.querySelectorAll("[data-codefor]").forEach(el=>{const id=el.dataset.codefor,c=codes&&codes[id];
   el.innerHTML=codes?(c?`<b>${c}</b>`:`<span class="note">${t("noCode")}</span>`):`<span class="note">${esc(codesErr||t("loadingCodes"))}</span>`;
   const s=document.querySelector(`[data-send="${id}"]`);if(s){if(c){const P=PV(id);s.hidden=false;s.href=waLink(P.wa,`*${CFG().shop}* – ${t("access")}\n${t("pvSel")}: ${P.city}\n${t("link")}: ${APP_URL}\n${t("codeL")}: *${c}*\n${t("secret")}`)}else s.hidden=true}})}
@@ -1026,6 +1062,7 @@ function importBlock(){const pv=CUR();if(!pv)return "";
 function vSet(){const c=CFG(),boss=isBoss();
   const lang=`<div class="panel"><h3>${t("langT")}</h3><div class="chips"><button type="button" class="chip ${LANG==="fr"?"on":""}" data-lg="fr">Français</button><button type="button" class="chip ${LANG==="wo"?"on":""}" data-lg="wo">Wolof</button></div></div>`;
   const out=`<button type="button" class="btn danger" id="lout">${t("logout")}</button>`;
+  if(isAide())return `<h2>${t("settings")}</h2><div class="stack"><div class="panel"><h3>${esc(t("aideR")+(SES.label?" · "+SES.label:""))}</h3><p class="note" style="margin:0">${t("aideInfo")}</p></div>${lang}${out}</div>`;
   if(!boss){const P=PV(SES.pv);return `<h2>${t("settings")}</h2><div class="stack">
    <div class="panel"><h3>${t("myPvT")}</h3>
     <div class="stk"><span class="sub">${t("city")}</span><span class="nm">${esc(P.city)}</span></div>
@@ -1066,6 +1103,9 @@ function vSet(){const c=CFG(),boss=isBoss();
      <label>${t("agentWa")}<input id="a_wa" inputmode="tel" placeholder="77 000 00 00"></label>
      <button class="btn accent" type="submit" id="a_btn">${t("addPvBtn")}</button></form>
    </div>
+   <div class="panel"><h3>${t("aidesT")}</h3><p class="note" style="margin:0">${t("aidesNote")}</p>
+    <div id="aidebox" class="stack" style="gap:10px">${aidesHtml()}</div>
+    <form class="pvset" id="aidf" autocomplete="off"><label>${t("aideName")}<input id="aide_n" placeholder="Ex. Ibrahima"></label><button class="btn accent" type="submit" id="aide_b">${t("aideAdd")}</button></form></div>
    <form class="panel" id="mcf" autocomplete="off"><h3>${t("myCodeT")}</h3><p class="note" style="margin:0">${t("myCodeNote")}</p>
     <div class="row2"><label>${t("newCodeL")}<input id="mc1" inputmode="numeric" maxlength="6" class="num"></label><label>${t("newCode2")}<input id="mc2" inputmode="numeric" maxlength="6" class="num"></label></div>
     <button class="btn" type="submit">${t("changeCode")}</button></form>
@@ -1077,7 +1117,10 @@ function bSet(){
   const lo=document.getElementById("lout");lo.onclick=()=>{if(arm!=="out"){arm="out";lo.textContent=t("logoutSure");return}arm="";logout()};
   const brs=document.getElementById("brs");if(brs)brs.onclick=()=>importBackup(val("bta"),CUR());
   if(!isBoss())return;
-  bPicker();fillCodes();loadCodes();
+  bPicker();fillCodes();loadCodes();bAides();
+  document.getElementById("aidf").onsubmit=async e=>{e.preventDefault();const n=val("aide_n").trim();if(!n)return toast(t("aideNeed"));
+    const btn=document.getElementById("aide_b");btn.disabled=true;
+    try{await setAide("aide_"+uid().toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,16),n);toast(t("codeMade"));document.getElementById("aide_n").value="";await loadCodes()}catch(err){toast(errMsg(err))}btn.disabled=false};
   document.querySelectorAll("[data-cf]").forEach(inp=>inp.oninput=()=>{const c=C.cfg.main||(C.cfg.main={...CFG0});c.id="main";c.pv="";c[inp.dataset.cf]=inp.value;save();header()});
   document.querySelectorAll("[data-pf]").forEach(inp=>inp.oninput=()=>{const p=C.pv[inp.dataset.id];if(!p)return;p[inp.dataset.pf]=inp.value;save()});
   document.querySelectorAll("[data-pf]").forEach(inp=>inp.onchange=()=>render());
